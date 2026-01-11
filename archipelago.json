@@ -1,0 +1,11 @@
+{
+    "game": "Fields of Mistria",
+    "authors": [
+        "Onaku",
+        "viivianite"
+    ],
+    "minimum_ap_version": "0.5.1",
+    "world_version": "0.1.0",
+    "compatible_version": 7,
+    "version": 7
+}

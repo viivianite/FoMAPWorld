@@ -45,9 +45,9 @@ class RenownLevelChecks(Choice):
 
 class RenownRankChecks(Choice):
     """
-    Enabling this option will add Town Ranks as checks.
+    Enabling this option will add Renown Ranks as checks.
     """
-    display_name = "Town Rank Checks"
+    display_name = "Renown Rank Checks"
     option_true = 1
     option_false = 0
     default = option_false

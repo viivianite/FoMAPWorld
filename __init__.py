@@ -1,21 +1,46 @@
 import settings
-from typing import Dict, Any
+from typing import Dict, Any, ClassVar
 from BaseClasses import MultiWorld, Region, Item, LocationProgressType
 from worlds.AutoWorld import World
 from Utils import visualize_regions
 from worlds.generic.Rules import set_rule, add_rule, forbid_item, add_item_rule
+from worlds.LauncherComponents import Component, components, icon_paths, Type, launch
 from .items import (FoMItem, FoMItemData, item_list, fixed_amount, fillers)
-from .locations import(baseRegion, springRegion, summerRegion, fallRegion, winterRegion, upperminesRegion, tidecavernRegion, deepearthRegion, lavacavesRegion, deepwoodsRegion, aquaticPerkRegion, oopartPerkRegion, sunkenPerkRegion, mistPerkRegion, ritualPerkRegion, legendaryPerkRegion, vintagePerkRegion, perk1Region, perk2Region, perk3Region, perk4Region, perk5Region, elevatorUpperRegion, elevatorTideRegion, elevatorEarthRegion, elevatorLavaRegion, storyquestRegion, renownlevelRegion, renownrankRegion, horsestatueRegion)
+from .locations import(baseRegion, springRegion, summerRegion, fallRegion, winterRegion, upperminesRegion, tidecavernRegion, deepearthRegion, lavacavesRegion, deepwoodsRegion, aquaticPerkRegion, oopartPerkRegion, sunkenPerkRegion, mistPerkRegion, ritualPerkRegion, legendaryPerkRegion, vintagePerkRegion, perk1Region, perk2Region, perk3Region, perk4Region, perk5Region, elevatorUpperRegion, elevatorTideRegion, elevatorEarthRegion, elevatorLavaRegion, storyquestRegion, renownlevelRegion, renownrankRegion, horsestatueRegion, victoryRegion, minesPQRegion)
 from .locations import (FoMAdvancement, all_items)
 from .options import FieldsOfMistriaOptions
 
+def launch_client(*args):
+    from .client import launch as client_main
+    launch(client_main, name="FoMClient", args = args)
+
+components.append(
+    Component(
+        "Fields Of Mistria Client",
+        component_type=Type.CLIENT,
+        func=launch_client,
+        icon="Fields of Mistria"
+        ))
+
+icon_paths["Fields of Mistria"] = f"ap:{__name__}/assets/icon.png"
+
+class FoMSettings(settings.Group):
+    class ModDataPath(settings.UserFolderPath):
+        """Folder path to Fields of Mistria mod_data folder"""
+        copy_to = None
+        description = "Fields of Mistria mod_data folder"
+    
+    mod_data_path: ModDataPath = ModDataPath(ModDataPath.copy_to)
+
 class FieldsOfMistriaWorld(World):
     """
-    Fields of Mistria is a farming simulator developed by NPC Studios, currently in Early Access.
+    Fields of Mistria is a farming simulator developed by NPC Studios.
     """
     game = "Fields of Mistria"
     topology_present = False
 
+    settings: ClassVar[FoMSettings]
+    settings_key = "fom_settings"
     item_name_to_id = {name: data.id for name, data in item_list.items()}
     location_name_to_id = {name: data.id for name, data in all_items.items()}
     options_dataclass = FieldsOfMistriaOptions
@@ -53,6 +78,8 @@ class FieldsOfMistriaWorld(World):
         deepwoods_region.locations += [FoMAdvancement(self.player, loc_name, loc_data.id, deepwoods_region)for loc_name, loc_data in deepwoodsRegion.items()]
         
         # Perk Based Regions
+        mines_pq_region = Region("Mines Perks & Questline", self.player, self.multiworld)
+        mines_pq_region.locations += [FoMAdvancement(self.player, loc_name, loc_data.id, mines_pq_region)for loc_name, loc_data in minesPQRegion.items()]
         aquaticPerk_region = Region("Aquatic Antiquities Perk", self.player, self.multiworld)
         aquaticPerk_region.locations += [FoMAdvancement(self.player, loc_name, loc_data.id, aquaticPerk_region)for loc_name, loc_data in aquaticPerkRegion.items()]
         oopartPerk_region = Region("Well Placed Perk", self.player, self.multiworld)
@@ -103,12 +130,10 @@ class FieldsOfMistriaWorld(World):
         self.multiworld.regions += [spring_region, summer_region, fall_region, winter_region]
         self.multiworld.regions += [uppermines_region, tidecavern_region, deepearth_region, lavacaves_region]
         self.multiworld.regions += [deepwoods_region]
-        self.multiworld.regions += [aquaticPerk_region, oopartPerk_region, sunkenPerk_region, mistPerk_region, ritualPerk_region, legendaryPerk_region, vintagePerk_region]
+        self.multiworld.regions += [mines_pq_region, aquaticPerk_region, oopartPerk_region, sunkenPerk_region, mistPerk_region, ritualPerk_region, legendaryPerk_region, vintagePerk_region]
         self.multiworld.regions += [tier1Perk_region, tier2Perk_region, tier3Perk_region, tier4Perk_region, tier5Perk_region]
         self.multiworld.regions += [horsestatue_region]
         
-        if (self.options.elevatorsanity.value == 1):
-            self.multiworld.regions += [elevator_region]
         if (self.options.story_checks.value == 1):
             self.multiworld.regions += [storyQuest_region]
         if (self.options.renown_level.value == 1):
@@ -129,6 +154,7 @@ class FieldsOfMistriaWorld(World):
         
         base_region.add_exits({"Upper Mines": "Mines Entrance", "Aquatic Antiquities Perk": "Obtain Aquatic Antiquities", "Well Placed Perk": "Obtain Well Placed", "Sunken Secrets Perk": "Obtain Sunken Secrets", "Mist Sight Perk": "Obtain Mist Sight", "Legendary Perk": "Obtain Legendary", "Former Farmers Perk": "Obtain Former Farmers", "Tier 1 Perks": "Tier 1 Essence", "Deep Woods": "Obtain Dragon's Breath", "Horse Statue Perks": "Unlock Horse Statue"})
         
+        uppermines_region.connect(mines_pq_region)
         uppermines_region.add_exits({"Tide Caverns": "Enter Tide Caverns"})
         tidecavern_region.add_exits({"Deep Earth": "Enter Deep Earth"})
         deepearth_region.add_exits({"Lava Caves": "Enter Lava Caves"})
@@ -143,6 +169,9 @@ class FieldsOfMistriaWorld(World):
         spring_region.add_exits({"Summer": "Summer Starts"})
         summer_region.add_exits({"Fall": "Fall Starts"})
         fall_region.add_exits({"Winter": "Winter Starts"})
+        
+        if (self.options.goal.value == 1):
+            self.multiworld.completion_condition[self.player] = lambda state: state.can_reach_location("Mines Floor 80", self.player)
 
     def set_rules(self) -> None:
         set_rule(self.multiworld.get_entrance("Summer Starts", self.player), lambda state: state.has("Summer", self.player, 1))
@@ -189,5 +218,5 @@ class FieldsOfMistriaWorld(World):
         return item
     
     def fill_slot_data(self) -> Dict[str, Any]:
-        slot_data = self.options.as_dict("goal", "museum_completion_percentage", "death_link")
+        slot_data = self.options.as_dict("goal", "museum_completion_percentage", "story_checks", "renown_level", "renown_rank", "elevatorsanity", "death_link")
         return slot_data

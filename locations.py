@@ -398,7 +398,7 @@ def create_locations():
     storyquestRegion['Upgrade the Saturday Market'] = AdvData(8034)
     
     # Mines Quest
-    upperminesRegion['The Water Tablet'] = AdvData(8027)
+    minesPQRegion['The Water Tablet'] = AdvData(8027)
     tidecavernRegion['The Earth Tablet'] = AdvData(8028)
     deepearthRegion['The Fire Tablet'] = AdvData(8029)
     deepearthRegion['Breaking the Fire Seal'] = AdvData(8000)
@@ -419,7 +419,7 @@ def create_locations():
     perk3Region['Barnyard Bounty II Perk Granted'] = AdvData(4011)
     perk4Region['Barnyard Bounty III Perk Granted'] = AdvData(4012)
     perk2Region['Bountiful Perk Granted'] = AdvData(4013)
-    upperminesRegion['Break One, Get Two Perk Granted'] = AdvData(4014)
+    minesPQRegion['Break One, Get Two Perk Granted'] = AdvData(4014)
     perk4Region['Caffeine Crimes Perk Granted'] = AdvData(4015)
     perk1Region['Catch of the Day Perk Granted'] = AdvData(4016)
     perk1Region['Close Bond Perk Granted'] = AdvData(4017)
@@ -430,29 +430,29 @@ def create_locations():
     perk4Region['Deliberate Debris Perk Granted'] = AdvData(4022)
     perk3Region['Dinner For Two Perk Granted'] = AdvData(4023)
     perk2Region['Discount Treats Perk Granted'] = AdvData(4024)
-    upperminesRegion['Dungeon Delicacies Perk Granted'] = AdvData(4025)
-    upperminesRegion['Earth Breaker Perk Granted'] = AdvData(4026)
-    upperminesRegion['Earth Breaker II Perk Granted'] = AdvData(4027)
+    minesPQRegion['Dungeon Delicacies Perk Granted'] = AdvData(4025)
+    minesPQRegion['Earth Breaker Perk Granted'] = AdvData(4026)
+    minesPQRegion['Earth Breaker II Perk Granted'] = AdvData(4027)
     perk5Region['Earthly Essence Perk Granted'] = AdvData(4028)
     perk2Region['Eastern Road Scholar Perk Granted'] = AdvData(4029)
     perk3Region['Empowered I Perk Granted'] = AdvData(4030)
     perk4Region['Empowered II Perk Granted'] = AdvData(4031)
     perk5Region['Fairy Cooking Perk Granted'] = AdvData(4032)
-    upperminesRegion['Fantastic Finds Perk Granted'] = AdvData(4033)
+    minesPQRegion['Fantastic Finds Perk Granted'] = AdvData(4033)
     perk2Region['Feed Prepper Perk Granted'] = AdvData(4034)
     perk1Region['Feeding Frenzy Perk Granted'] = AdvData(4035)
     perk1Region['Forager Perk Granted'] = AdvData(4036)
-    perk4Region['Former Farmers Perk Granted'] = AdvData(4037)
+    # perk4Region['Former Farmers Perk Granted'] = AdvData(4037)
     perk1Region['Fortified Blacksmithing Perk Granted'] = AdvData(4038)
     perk4Region['Frenzy Perk Granted'] = AdvData(4039)
     perk3Region['Full Class I Perk Granted'] = AdvData(4040)
-    upperminesRegion['Generous in Defeat Perk Granted'] = AdvData(4042)
-    upperminesRegion['Gift Exchange Perk Granted'] = AdvData(4043)
+    minesPQRegion['Generous in Defeat Perk Granted'] = AdvData(4042)
+    minesPQRegion['Gift Exchange Perk Granted'] = AdvData(4043)
     perk4Region['Gold Expert Perk Granted'] = AdvData(4044)
-    upperminesRegion['Good as Gold Perk Granted'] = AdvData(4045)
+    minesPQRegion['Good as Gold Perk Granted'] = AdvData(4045)
     perk1Region['Green Thumb Perk Granted'] = AdvData(4046)
-    upperminesRegion['Guardian\'s Shield Perk Granted'] = AdvData(4047)
-    upperminesRegion['Guardian\'s Shield II Perk Granted'] = AdvData(4048)
+    minesPQRegion['Guardian\'s Shield Perk Granted'] = AdvData(4047)
+    minesPQRegion['Guardian\'s Shield II Perk Granted'] = AdvData(4048)
     perk1Region['Hammer Timing I Perk Granted'] = AdvData(4049)
     perk2Region['Hammer Timing II Perk Granted'] = AdvData(4050)
     perk3Region['Hammer Timing III Perk Granted'] = AdvData(4051)
@@ -461,16 +461,16 @@ def create_locations():
     perk3Region['Hasty Blacksmithing Perk Granted'] = AdvData(4054)
     perk2Region['Heavy Duty Perk Granted'] = AdvData(4055)
     horsestatueRegion['Horsepower Perk Granted'] = AdvData(4056)
-    upperminesRegion['In Motion Perk Granted'] = AdvData(4057)
+    minesPQRegion['In Motion Perk Granted'] = AdvData(4057)
     perk2Region['Iron Expert Perk Granted'] = AdvData(4058)
-    upperminesRegion['Iron Hound Perk Granted'] = AdvData(4059)
-    upperminesRegion['Jump Attack Perk Granted'] = AdvData(4060)
+    minesPQRegion['Iron Hound Perk Granted'] = AdvData(4059)
+    minesPQRegion['Jump Attack Perk Granted'] = AdvData(4060)
     perk2Region['Leech Blacksmithing Perk Granted'] = AdvData(4061)
     perk3Region['Legendary Perk Granted'] = AdvData(4062)
     perk2Region['Lightweight Blacksmithing Perk Granted'] = AdvData(4063)
     perk2Region['Likable Cooking Perk Granted'] = AdvData(4064)
     perk3Region['Living off the Land Perk Granted'] = AdvData(4065)
-    upperminesRegion['Lost to History Perk Granted'] = AdvData(4066)
+    minesPQRegion['Lost to History Perk Granted'] = AdvData(4066)
     perk4Region['Lovable Cooking Perk Granted'] = AdvData(4067)
     perk2Region['Lucky Haul Perk Granted'] = AdvData(4068)
     perk4Region['Lucky Haul II Perk Granted'] = AdvData(4069)
@@ -479,48 +479,48 @@ def create_locations():
     perk4Region['Magic Design Perk Granted'] = AdvData(4072)
     perk4Region['Magical Meals Perk Granted'] = AdvData(4073)
     perk1Region['Masonry I Perk Granted'] = AdvData(4074)
-    upperminesRegion['Material World Perk Granted'] = AdvData(4075)
+    minesPQRegion['Material World Perk Granted'] = AdvData(4075)
     perk4Region['Maximum Milling Perk Granted'] = AdvData(4076)
-    upperminesRegion['Mine Time Perk Granted'] = AdvData(4077)
+    # minesPQRegion['Mine Time Perk Granted'] = AdvData(4077)
     perk5Region['Mist Sight Perk Granted'] = AdvData(4078)
     perk1Region['Museum Quality I Perk Granted'] = AdvData(4079)
     perk3Region['Museum Quality II Perk Granted'] = AdvData(4080)
     perk4Region['Museum Quality III Perk Granted'] = AdvData(4081)
     perk2Region['Natural Perk Granted'] = AdvData(4082)
-    upperminesRegion['Natural Beauty Perk Granted'] = AdvData(4083)
-    upperminesRegion['Natural Beauty II Perk Granted'] = AdvData(4084)
+    minesPQRegion['Natural Beauty Perk Granted'] = AdvData(4083)
+    minesPQRegion['Natural Beauty II Perk Granted'] = AdvData(4084)
     horsestatueRegion['Nice Ride Perk Granted'] = AdvData(4085)
     perk2Region['Nice Swing Perk Granted'] = AdvData(4086)
-    upperminesRegion['Ore-riginal Perk Granted'] = AdvData(4087)
+    minesPQRegion['Ore-riginal Perk Granted'] = AdvData(4087)
     perk4Region['Ornamental Perk Granted'] = AdvData(4088)
-    upperminesRegion['Out of Juice Perk Granted'] = AdvData(4089)
+    minesPQRegion['Out of Juice Perk Granted'] = AdvData(4089)
     perk2Region['Perfect Catch Perk Granted'] = AdvData(4090)
     perk4Region['Perfect Pollinators Perk Granted'] = AdvData(4091)
-    upperminesRegion['Perfect Prefix Perk Granted'] = AdvData(4092)
+    minesPQRegion['Perfect Prefix Perk Granted'] = AdvData(4092)
     perk1Region['Prepared Picker Perk Granted'] = AdvData(4094)
     perk3Region['Prize Winning Perk Granted'] = AdvData(4095)
     perk2Region['Pursuit Perk Granted'] = AdvData(4096)
     perk2Region['Quality Crafting Perk Granted'] = AdvData(4097)
-    upperminesRegion['Quick Footed Perk Granted'] = AdvData(4098)
-    upperminesRegion['Reclaimer Perk Granted'] = AdvData(4099)
-    upperminesRegion['Refined Rockery Perk Granted'] = AdvData(4100)
+    minesPQRegion['Quick Footed Perk Granted'] = AdvData(4098)
+    minesPQRegion['Reclaimer Perk Granted'] = AdvData(4099)
+    minesPQRegion['Refined Rockery Perk Granted'] = AdvData(4100)
     baseRegion['Refreshing Perk Granted'] = AdvData(4101)
-    upperminesRegion['Resonance Perk Granted'] = AdvData(4102)
+    minesPQRegion['Resonance Perk Granted'] = AdvData(4102)
     perk1Region['Restorative Cooking Perk Granted'] = AdvData(4103)
-    upperminesRegion['Rocking Perk Granted'] = AdvData(4104)
+    minesPQRegion['Rocking Perk Granted'] = AdvData(4104)
     perk2Region['School Crasher Perk Granted'] = AdvData(4105)
     perk2Region['Seasoned Perk Granted'] = AdvData(4106)
     perk3Region['Set Pieces Perk Granted'] = AdvData(4107)
     perk1Region['Sharp Blacksmithing Perk Granted'] = AdvData(4108)
-    upperminesRegion['What an Offer Perk Granted'] = AdvData(4109)
+    minesPQRegion['What an Offer Perk Granted'] = AdvData(4109)
     perk4Region['Sickle Sword Perk Granted'] = AdvData(4110)
     perk3Region['Silver Expert Perk Granted'] = AdvData(4111)
-    upperminesRegion['Silver Seeker Perk Granted'] = AdvData(4112)
+    minesPQRegion['Silver Seeker Perk Granted'] = AdvData(4112)
     perk4Region['Snacktime Perk Granted'] = AdvData(4113)
-    upperminesRegion['Sonic Boom Perk Granted'] = AdvData(4114)
+    minesPQRegion['Sonic Boom Perk Granted'] = AdvData(4114)
     perk3Region['Speedy Cooking Perk Granted'] = AdvData(4115)
     perk3Region['Steady Supplies Perk Granted'] = AdvData(4116)
-    upperminesRegion['Stoneturner Perk Granted'] = AdvData(4117)
+    minesPQRegion['Stoneturner Perk Granted'] = AdvData(4117)
     perk1Region['Sunken Secrets Perk Granted'] = AdvData(4118)
     perk2Region['Sunken Treasure Perk Granted'] = AdvData(4119)
     perk3Region['Superb Sower Perk Granted'] = AdvData(4120)
@@ -534,13 +534,13 @@ def create_locations():
     perk2Region['Time to Eat II Perk Granted'] = AdvData(4128)
     perk3Region['Time to Eat III Perk Granted'] = AdvData(4129)
     perk4Region['Tireless Blacksmithing Perk Granted'] = AdvData(4130)
-    upperminesRegion['Treasure Hunter Perk Granted'] = AdvData(4131)
+    minesPQRegion['Treasure Hunter Perk Granted'] = AdvData(4131)
     perk3Region['Treasure Trove Perk Granted'] = AdvData(4132)
-    upperminesRegion['Treasured Perk Granted'] = AdvData(4133)
-    upperminesRegion['True Blue Perk Granted'] = AdvData(4134)
-    upperminesRegion['True Strike Perk Granted'] = AdvData(4135)
-    upperminesRegion['True Strike II Perk Granted'] = AdvData(4136)
-    upperminesRegion['Underground Inspiration Perk Granted'] = AdvData(4137)
+    minesPQRegion['Treasured Perk Granted'] = AdvData(4133)
+    minesPQRegion['True Blue Perk Granted'] = AdvData(4134)
+    minesPQRegion['True Strike Perk Granted'] = AdvData(4135)
+    minesPQRegion['True Strike II Perk Granted'] = AdvData(4136)
+    minesPQRegion['Underground Inspiration Perk Granted'] = AdvData(4137)
     perk2Region['Unexpected Haul Perk Granted'] = AdvData(4138)
     perk1Region['Unpeatable Perk Granted'] = AdvData(4139)
     perk1Region['Waste Not Want Not Perk Granted'] = AdvData(4140)
@@ -548,7 +548,7 @@ def create_locations():
     perk3Region['Weedline Watcher II Perk Granted'] = AdvData(4142)
     perk2Region['Welcome Home I Perk Granted'] = AdvData(4143)
     perk3Region['Welcome Home II Perk Granted'] = AdvData(4144)
-    upperminesRegion['Well Armed Perk Granted'] = AdvData(4145)
+    minesPQRegion['Well Armed Perk Granted'] = AdvData(4145)
     perk2Region['Well Watered Perk Granted'] = AdvData(4147)
     perk3Region['Well Placed Perk Granted'] = AdvData(4146)
     perk1Region['Western Ruins Scholar Perk Granted'] = AdvData(4148)
@@ -574,6 +574,10 @@ def create_locations():
     elevatorLavaRegion['Mines Floor 70'] = AdvData(5013)
     elevatorLavaRegion['Mines Floor 75'] = AdvData(5014)
     elevatorLavaRegion['Mines Floor 80'] = AdvData(5015)
+    #elevatorTBDRegion['Mines Floor 85'] = AdvData(5016)
+    #elevatorTBDRegion['Mines Floor 90'] = AdvData(5017)
+    #elevatorTBDRegion['Mines Floor 95'] = AdvData(5018)
+    #elevatorTBDRegion['Mines Floor 100'] = AdvData(5019)
     
     #Renown Level Checks
     renownlevelRegion["Renown Level 1"] = AdvData(6000)
@@ -671,11 +675,11 @@ def create_locations():
     renownlevelRegion["Renown Level 93"] = AdvData(6092)
     renownlevelRegion["Renown Level 94"] = AdvData(6093)
     renownlevelRegion["Renown Level 95"] = AdvData(6094)
-    #renownlevelRegion["Renown Level 96"] = AdvData(6095)
-    #renownlevelRegion["Renown Level 97"] = AdvData(6096)
-    #renownlevelRegion["Renown Level 98"] = AdvData(6097)
-    #renownlevelRegion["Renown Level 99"] = AdvData(6098)
-    #renownlevelRegion["Renown Level 100"] = AdvData(6099)
+    renownlevelRegion["Renown Level 96"] = AdvData(6095)
+    renownlevelRegion["Renown Level 97"] = AdvData(6096)
+    renownlevelRegion["Renown Level 98"] = AdvData(6097)
+    renownlevelRegion["Renown Level 99"] = AdvData(6098)
+    renownlevelRegion["Renown Level 100"] = AdvData(6099)
     
     #Renown Rank Checks
     renownrankRegion["Town Rank Stone"] = AdvData(6500)
@@ -687,10 +691,10 @@ def create_locations():
     renownrankRegion["Town Rank Emerald"] = AdvData(6506)
     renownrankRegion["Town Rank Gold"] = AdvData(6507)
     renownrankRegion["Town Rank Diamond"] = AdvData(6508)
-    #renownrankRegion["Town Rank Mistril"] = AdvData(6509)
-    
+    renownrankRegion["Town Rank Mistril"] = AdvData(6509)
 
 baseRegion = {}
+# museum regions
 springRegion = {}
 summerRegion = {}
 fallRegion = {}
@@ -700,6 +704,9 @@ tidecavernRegion = {}
 deepearthRegion = {}
 lavacavesRegion = {}
 deepwoodsRegion = {}
+
+# perk/quest regions
+minesPQRegion = {}
 aquaticPerkRegion = {}
 oopartPerkRegion = {}
 sunkenPerkRegion = {}
@@ -712,6 +719,9 @@ perk2Region = {}
 perk3Region = {}
 perk4Region = {}
 perk5Region = {}
+horsestatueRegion = {}
+
+# option selected regions
 elevatorUpperRegion = {}
 elevatorTideRegion = {}
 elevatorEarthRegion = {}
@@ -719,8 +729,8 @@ elevatorLavaRegion = {}
 storyquestRegion = {}
 renownlevelRegion = {}
 renownrankRegion = {}
-horsestatueRegion = {}
+victoryRegion = {}
 
 create_locations()
 
-all_items = baseRegion | springRegion | summerRegion | fallRegion | winterRegion | upperminesRegion | tidecavernRegion | deepearthRegion | lavacavesRegion | deepwoodsRegion | aquaticPerkRegion | oopartPerkRegion | sunkenPerkRegion | mistPerkRegion | ritualPerkRegion | legendaryPerkRegion | vintagePerkRegion | perk1Region | perk2Region | perk3Region | perk4Region | perk5Region | elevatorUpperRegion | elevatorTideRegion | elevatorEarthRegion | elevatorLavaRegion | storyquestRegion | renownlevelRegion | renownrankRegion | horsestatueRegion
+all_items = baseRegion | springRegion | summerRegion | fallRegion | winterRegion | upperminesRegion | tidecavernRegion | deepearthRegion | lavacavesRegion | deepwoodsRegion | aquaticPerkRegion | oopartPerkRegion | sunkenPerkRegion | mistPerkRegion | ritualPerkRegion | legendaryPerkRegion | vintagePerkRegion | perk1Region | perk2Region | perk3Region | perk4Region | perk5Region | elevatorUpperRegion | elevatorTideRegion | elevatorEarthRegion | elevatorLavaRegion | storyquestRegion | renownlevelRegion | renownrankRegion | horsestatueRegion | minesPQRegion | victoryRegion

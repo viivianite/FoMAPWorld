@@ -126,7 +126,7 @@ class Armor:
     Chest = "Progressive Chestpiece"
     Pants = "Progressive Legplates"
     Shoes = "Progressive Greaves"
-    Wristband = "Progressive Ring"
+    Wristband = "Progressive Accessory"
     HeroRing = "Hero's Ring"
 
     

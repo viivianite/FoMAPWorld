@@ -25,6 +25,7 @@ class FoMCommandProcessor(ClientCommandProcessor):
 class FoMContext(CommonContext):
     game = "Fields of Mistria"
     items_handling = 0b111
+
     slot_data: Dict[str, Utils.Any] = {}
     deathlink = False
     goal = 0
@@ -64,6 +65,7 @@ class FoMContext(CommonContext):
         self.resetFilesStates()
         await super().shutdown()
 
+
     def on_deathlink(self, data: Utils.Dict[str, Utils.Any]) -> None:
         super().on_deathlink(data)
 
@@ -86,8 +88,6 @@ class FoMContext(CommonContext):
             mod_data_path = Utils.user_path(mod_data_path)
         
         mod_path = mod_data_path + "/ap_rando"
-        
-        print("cmd: " + cmd)
 
         if cmd == "RoomInfo":
 
@@ -113,7 +113,8 @@ class FoMContext(CommonContext):
                 print("items.json already exists")
 
             try:
-                open(mod_path + "/seeds/" + self.seed_name + "/locations.json", 'x')
+                with open(mod_path + "/seeds/" + self.seed_name + "/locations.json", 'x') as f:
+                    f.write("{\"locations\": []}")
             except:
                 print("locations.json already exists")
         
@@ -154,6 +155,7 @@ class FoMContext(CommonContext):
             
 
         if cmd == "ReceivedItems":
+
             for Item in args["items"]:
                 if Item.item in self.item_dict:
                     self.item_dict[Item.item] += 1
@@ -185,10 +187,6 @@ class FoMContext(CommonContext):
             os.remove(mod_path + "/seeds/" + self.seed_name + "/items.json")
         except:
             print("couldn't remove items.json")
-        try:
-            os.remove(mod_path + "/seeds/" + self.seed_name + "/locations.json")
-        except:
-            print("couldn't remove locations.json")
         try:
             os.remove(mod_path + "/seeds/" + self.seed_name + "/deathlink.json")
         except:

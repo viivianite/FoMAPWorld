@@ -26,6 +26,7 @@ class FoMContext(CommonContext):
     game = "Fields of Mistria"
     items_handling = 0b111
 
+    client_loop: asyncio.Task[None]
     slot_data: Dict[str, Utils.Any] = {}
     deathlink = False
     goal = 0
@@ -34,13 +35,22 @@ class FoMContext(CommonContext):
     renown_level = False
     renown_rank = False
     elevatorsanity = False
-    seed_name = 0
+    seed_name = int | None
     item_dict = {}
+    loc_set = set()
+    mod_path = ""
 
     def __init__(self, server_address, password):
         super(FoMContext, self).__init__(server_address, password)
         self.game = "Fields of Mistria"
         self.slot_data: Dict[str, Any] = {}
+        
+        mod_data_path = get_settings().fom_settings.mod_data_path        
+        
+        if not os.path.exists(mod_data_path):
+            mod_data_path = Utils.user_path(mod_data_path)
+        
+        self.mod_path = mod_data_path + "/ap_rando"
 
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
@@ -81,19 +91,27 @@ class FoMContext(CommonContext):
         self.ui = FoMManager(self)
         self.ui_task = asyncio.create_task(self.ui.async_run(), name="UI")
 
+    async def fomclient_loop(self) -> None:
+        while not self.exit_event.is_set():
+            if self.seed_name:
+                try:
+                    with open(self.mod_path + "/seeds/" + self.seed_name + "/locations.json", 'r') as f:
+                        locs = json.load(f)
+                        for loc in locs["locations"]:
+                            self.loc_set.add(loc)
+                        await self.check_locations(self.loc_set)
+                except Exception as e:
+                    logger.exception(e)
+            await asyncio.sleep(1)
+
+
     def on_package(self, cmd: str, args: Dict[str, Any]) -> None:
-        mod_data_path = get_settings().fom_settings.mod_data_path        
-        
-        if not os.path.exists(mod_data_path):
-            mod_data_path = Utils.user_path(mod_data_path)
-        
-        mod_path = mod_data_path + "/ap_rando"
 
         if cmd == "RoomInfo":
 
             self.seed_name = args["seed_name"]
             
-            with open(mod_path+"/seeds/status.json", 'w') as f:
+            with open(self.mod_path+"/seeds/status.json", 'w') as f:
                 connection_data = {
                     "connected": True,
                     "seed_name": self.seed_name
@@ -101,19 +119,19 @@ class FoMContext(CommonContext):
                 connect_json_str = json.dumps(connection_data, indent=4)
                 f.write(connect_json_str)
 
-            if not os.path.exists(mod_path+"/seeds"):
-                os.makedirs(mod_path+ "/seeds")
+            if not os.path.exists(self.mod_path+"/seeds"):
+                os.makedirs(self.mod_path+ "/seeds")
 
-            if not os.path.exists(mod_path + "/seeds/" +self.seed_name):
-                os.mkdir(mod_path + "/seeds/" + self.seed_name)
+            if not os.path.exists(self.mod_path + "/seeds/" +self.seed_name):
+                os.mkdir(self.mod_path + "/seeds/" + self.seed_name)
 
             try:
-                open(mod_path + "/seeds/" + self.seed_name + "/items.json", 'x')
+                open(self.mod_path + "/seeds/" + self.seed_name + "/items.json", 'x')
             except:
                 print("items.json already exists")
 
             try:
-                with open(mod_path + "/seeds/" + self.seed_name + "/locations.json", 'x') as f:
+                with open(self.mod_path + "/seeds/" + self.seed_name + "/locations.json", 'x') as f:
                     f.write("{\"locations\": []}")
             except:
                 print("locations.json already exists")
@@ -144,13 +162,13 @@ class FoMContext(CommonContext):
             
             if self.deathlink == 1:
                 try:
-                    open(mod_path + "/seeds/" + self.seed_name + "/deathlink.json", 'x')
+                    open(self.mod_path + "/seeds/" + self.seed_name + "/deathlink.json", 'x')
                 except:
                     print("deathlink.json already exists")
                 
             json_str = json.dumps(json_data, indent = 4)
 
-            with open(mod_path + "/seeds/"+ self.seed_name+"/settings.json", 'w') as f:
+            with open(self.mod_path + "/seeds/"+ self.seed_name+"/settings.json", 'w') as f:
                 f.write(json_str)
             
 
@@ -165,10 +183,10 @@ class FoMContext(CommonContext):
             item_json = json.dumps(self.item_dict)
 
             try:
-                with open(mod_path + "/seeds/" + self.seed_name + "/items.json", 'w') as f:
+                with open(self.mod_path + "/seeds/" + self.seed_name + "/items.json", 'w') as f:
                     f.write(item_json)
             except:
-                with open(mod_path + "/seeds/" + self.seed_name + "/items.json", 'w') as f:
+                with open(self.mod_path + "/seeds/" + self.seed_name + "/items.json", 'w') as f:
                     f.write(item_json)
             
             
@@ -180,19 +198,19 @@ class FoMContext(CommonContext):
         mod_path = get_settings().fom_settings.mod_data_path + "/ap_rando"
         
         try:
-            os.remove(mod_path + "/seeds/" + self.seed_name + "/settings.json")
+            os.remove(self.mod_path + "/seeds/" + self.seed_name + "/settings.json")
         except:
             print("couldn't remove settings.json")
         try:
-            os.remove(mod_path + "/seeds/" + self.seed_name + "/items.json")
+            os.remove(self.mod_path + "/seeds/" + self.seed_name + "/items.json")
         except:
             print("couldn't remove items.json")
         try:
-            os.remove(mod_path + "/seeds/" + self.seed_name + "/deathlink.json")
+            os.remove(self.mod_path + "/seeds/" + self.seed_name + "/deathlink.json")
         except:
             print("couldn't remove deathlink.json")
         
-        with open(mod_path+"/seeds/status.json", 'w') as f:
+        with open(self.mod_path+"/seeds/status.json", 'w') as f:
             connection_data = {
                 "connected": False
             }
@@ -205,9 +223,12 @@ def launch(*args):
     async def main(args):
         ctx = FoMContext(args.connect, args.password)
         ctx.server_task = asyncio.create_task(server_loop(ctx), name="server loop")
+        ctx.client_loop = asyncio.create_task(ctx.fomclient_loop(), name="client loop")
+
         if gui_enabled:
             ctx.run_gui()
         ctx.run_cli()
+
 
         await ctx.exit_event.wait()
         ctx.server_address = None

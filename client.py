@@ -100,6 +100,10 @@ class FoMContext(CommonContext):
                         for loc in locs["locations"]:
                             self.loc_set.add(loc)
                         await self.check_locations(self.loc_set)
+                    with open(self.mod_path + "/seeds/status.json") as g:
+                        status = json.load(g)
+                        if status["goal"]:
+                            await self.send_msgs([{"cmd": "StatusUpdate", "status": 30}])
                 except Exception as e:
                     logger.exception(e)
             await asyncio.sleep(1)
@@ -114,7 +118,8 @@ class FoMContext(CommonContext):
             with open(self.mod_path+"/seeds/status.json", 'w') as f:
                 connection_data = {
                     "connected": True,
-                    "seed_name": self.seed_name
+                    "seed_name": self.seed_name,
+                    "goal": False
                 }
                 connect_json_str = json.dumps(connection_data, indent=4)
                 f.write(connect_json_str)

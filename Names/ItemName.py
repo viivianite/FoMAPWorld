@@ -107,7 +107,7 @@ class Building:
     Coop = "Progressive Coop Blueprint"
     Greenhouse = "Progressive Greenhouse Blueprint"
     Kitchen = "Progressive Kitchen"
-    Crafting = "Crafting Station"
+    Crafting = "Woodcrafting Station"
     Horse = "Horse Statue"
     
 class Tool:
@@ -123,10 +123,10 @@ class Tool:
     
 class Armor:
     Helmet = "Progressive Helmet"
-    Chest = "Progressive Chestpiece"
+    Chest = "Progressive Armor"
     Pants = "Progressive Legplates"
     Shoes = "Progressive Greaves"
-    Wristband = "Progressive Accessory"
+    Wristband = "Progressive Ring"
     HeroRing = "Hero's Ring"
 
     
